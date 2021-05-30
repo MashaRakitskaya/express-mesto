@@ -18,14 +18,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.use((req, res, next) => {
+  req.user = {
+    _id: '60aaaab2a916e5e2bf6079cd'
+  };
 
-// app.use((req, res, next) => {
-//   req.user = {
-//     _id: ''
-//   };
-
-//   next();
-// });
+  next();
+});
 
 app.use(router);
 
