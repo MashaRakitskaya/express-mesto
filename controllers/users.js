@@ -10,12 +10,10 @@ module.exports.getUsers = (req, res) => {
 
 module.exports.getUserId = (req, res) => {
   User.findById(req.params.id)
-  .then((user) => {
-    if(user) {
-    return res.status(200).send(user)
-  }
-  return res.status(404).send({message:"Нет пользователя с таким _id"})
-})
+  .orFail(() => {
+    return res.status(404).send({message:"Нет пользователя с таким _id"})
+  })
+  .then((user) => res.status(200).send(user))
   .catch(() => res.status(500).send({ message: 'Ошибка' }));
 };
 
@@ -37,12 +35,10 @@ module.exports.createUser = (req, res) => {
 module.exports.updateUser = (req, res) => {
   const { name, about } = req.body;
   User.findByIdAndUpdate(req.user._id, { name, about }, { runValidators: true, new: true })
-  .then((user) => {
-    if (!user) {
-      res.status(404).send({ message: 'Нет пользователя с таким _id' });
-    }
-    return res.status(200).send({ data: user });
+  .orFail(() => {
+    return res.status(404).send({message:"Нет пользователя с таким _id"})
   })
+  .then((user) => res.status(200).send({ data: user }))
   .catch(err => {
     if (err.name === 'ValidationError') {
       res.status(400).send({ message: 'Переданы некорректный данные' })
@@ -57,12 +53,10 @@ module.exports.updateAvatar = (req, res) => {
   User.findByIdAndUpdate(
     req.user._id, { avatar }, { runValidators: true, new: true },
   )
-  .then((user) => {
-    if (!user) {
-      res.status(404).send({ message: 'Нет пользователя с таким _id' });
-    }
-    return res.status(200).send({ data: user });
+  .orFail(() => {
+    return res.status(404).send({message:"Нет пользователя с таким _id"})
   })
+  .then((user) => res.status(200).send({ data: user }))
   .catch(err => {
     if (err.name === 'ValidationError') {
       res.status(400).send({ message: 'Переданы некорректный данные' })
