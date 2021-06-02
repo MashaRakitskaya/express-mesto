@@ -21,7 +21,6 @@
     "eslint-plugin-import": "^2.23.2",
     "nodemon": "^2.0.7"
   },
-
   "repository": {
     "type": "git",
     "url": "git+https://github.com/MashaRakitskaya/express-mesto.git"
