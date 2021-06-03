@@ -22,21 +22,6 @@ module.exports.createCard = (req, res) => {
     });
 };
 
-// module.exports.deleteCard = (req, res) => {
-//   Card.findByIdAndRemove(req.params.id)
-//   .orFail(new Error('NotValidId'))
-//   .then((card) => res.status(200).send({ data: card }))
-//   .catch((err) =>{
-//     if(err.kind === "ObjectId") {
-//       const code = 404;
-//       const error = `Карточка с указанным _id не найдена!`;
-//       res.status(code).send({ messages: error })
-//     } else {
-//      res.status(500).send({ message: 'Ошибка' })
-//     }
-//   })
-// };
-
 module.exports.deleteCard = (req, res) => {
   Card.findByIdAndRemove(req.params.id)
   .orFail(new Error('NotValidId'))
