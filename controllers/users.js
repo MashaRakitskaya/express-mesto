@@ -8,36 +8,18 @@ module.exports.getUsers = (req, res) => {
   });
 };
 
-// module.exports.getUserId = (req, res) => {
-//   User.findById(req.params.id)
-//   .orFail(() => new Error())
-//   .then((user) => res.status(200).send(user))
-//   .catch((err) =>{
-//     if(err.kind === "ObjectId") {
-//       res.status(404).send({ message: 'Нет пользователя с таким _id'})
-//     } else{
-//      res.status(500).send({ message: 'Ошибка' })
-//     }
-//   })
-// };
-
 module.exports.getUserId = (req, res) => {
   User.findById(req.params.id)
-  .orFail(
-    () => {
-      throw new Error()
-    }
-  )
+  .orFail(new Error('NotValidId'))
   .then((user) => res.status(200).send(user))
-  .catch((err) =>{
-    if(err.kind === "ObjectId") {
-      const code = 404;
-      const error = `Нет пользователя с таким _id!!`;
-      res.status(code).send({ messages: error })
-    } else {
-     res.status(500).send({ message: 'Ошибка' })
+  .catch((err) => {
+    if (err.message === 'NotValidId') {
+     return res.status(404).send({ message: 'Нет пользователя с таким _id' });
+    } else if(err.kind === "ObjectId") {
+     return res.status(400).send({ message: 'Невалидный id'})
     }
-  })
+    res.status(500).send({ message: 'Ошибка' });
+  });
 };
 
 module.exports.createUser = (req, res) => {
