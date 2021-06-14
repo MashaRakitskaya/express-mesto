@@ -1,9 +1,9 @@
 const router = require('express').Router();
+const { celebrate, Joi } = require('celebrate');
 const userRouter = require('./users');
 const cardsRouter = require('./cards');
 const auth = require('../middlewares/auth');
 const { createUser, login } = require('../controllers/users');
-const { celebrate, Joi } = require('celebrate');
 
 const validateUserSignup = celebrate({
   body: Joi.object().keys({
@@ -12,6 +12,7 @@ const validateUserSignup = celebrate({
     name: Joi.string().min(2).max(30),
     about: Joi.string().min(2).max(30),
     avatar: Joi.string().regex(
+      // eslint-disable-next-line comma-dangle
       /^(https?:\/\/)?([\w-]{1,32}\.[\w-]{1,32})[^\s@]*$/
     ),
   }),
@@ -27,8 +28,7 @@ const validateSignin = celebrate({
 router.post('/signup', validateUserSignup, createUser);
 router.post('/signin', validateSignin, login);
 
-router.use(auth);
-router.use('/users', userRouter);
-router.use('/cards', cardsRouter);
+router.use('/users', auth, userRouter);
+router.use('/cards', auth, cardsRouter);
 
 module.exports = router;

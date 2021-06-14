@@ -1,11 +1,11 @@
 {
   "name": "express-mesto",
   "version": "1.0.0",
-  "description": "",
+  "description": "сервер для проекта mesto",
   "main": "./app.js",
   "author": "Maryia Rakitskaya",
   "scripts": {
-    "lint": "npx eslint",
+    "lint": "npx eslint . --ext .js",
     "start": "node app.js",
     "dev": "nodemon app.js"
   },

@@ -46,6 +46,7 @@ module.exports.likeCard = (req, res, next) => {
   Card.findByIdAndUpdate(
     req.params.id,
     { $addToSet: { likes: req.user._id } },
+    // eslint-disable-next-line comma-dangle
     { new: true }
   )
     .orFail(new Error('NotValidId'))
@@ -65,6 +66,7 @@ module.exports.dislikeCard = (req, res, next) => {
   Card.findByIdAndUpdate(
     req.params.id,
     { $pull: { likes: req.user._id } },
+    // eslint-disable-next-line comma-dangle
     { new: true }
   )
     .orFail(new Error('NotValidId'))

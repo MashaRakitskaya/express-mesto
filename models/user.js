@@ -22,6 +22,7 @@ const userSchema = new mongoose.Schema({
       'https://pictures.s3.yandex.net/resources/jacques-cousteau_1604399756.png',
     validate: {
       validator: (v) =>
+        // eslint-disable-next-line implicit-arrow-linebreak
         /^(https?:\/\/)([\da-z.-]+)\.([a-z.]{2,6})([/\w\W.-]*)#?$/g.test(v),
       message: 'Некорректный URL',
     },
@@ -42,6 +43,7 @@ const userSchema = new mongoose.Schema({
   },
 });
 
+// eslint-disable-next-line func-names
 userSchema.statics.findUserByCredentials = function (email, password) {
   return this.findOne({ email })
     .select('+password')

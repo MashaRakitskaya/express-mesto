@@ -44,6 +44,7 @@ module.exports.getUserId = (req, res, next) => {
 };
 
 module.exports.createUser = (req, res, next) => {
+  // eslint-disable-next-line object-curly-newline
   const { name, about, avatar, email, password } = req.body;
   bcrypt.hash(password, 10).then((hash) => {
     User.create({
@@ -53,14 +54,18 @@ module.exports.createUser = (req, res, next) => {
       email,
       password: hash,
     })
-      .then((user) =>
-        res.status(200).send({
-          _id: user._id,
-          name: user.name,
-          about: user.about,
-          avatar: user.avatar,
-          email: user.email,
-        })
+      .then(
+        (user) =>
+          // eslint-disable-next-line implicit-arrow-linebreak
+          res.status(200).send({
+            _id: user._id,
+            name: user.name,
+            about: user.about,
+            avatar: user.avatar,
+            email: user.email,
+            // eslint-disable-next-line comma-dangle
+          })
+        // eslint-disable-next-line function-paren-newline
       )
       .catch((err) => {
         if (err.name === 'ValidationError') {
@@ -78,6 +83,7 @@ module.exports.updateUser = (req, res, next) => {
   User.findByIdAndUpdate(
     req.user._id,
     { name, about },
+    // eslint-disable-next-line comma-dangle
     { runValidators: true, new: true }
   )
     .orFail(new Error('NotValidId'))
@@ -98,6 +104,7 @@ module.exports.updateAvatar = (req, res, next) => {
   User.findByIdAndUpdate(
     req.user._id,
     { avatar },
+    // eslint-disable-next-line comma-dangle
     { runValidators: true, new: true }
   )
     .orFail(new Error('NotValidId'))
