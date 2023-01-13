@@ -14,6 +14,6 @@
 * download the code
 
    in the root of the folder with the code:
-*`npm i` – install project dependencies
-*`npm run start` — starts the server
-*`npm run dev` — starts the server with hot-reload
+* `npm i` – install project dependencies
+* `npm run start` — starts the server
+* `npm run dev` — starts the server with hot-reload
