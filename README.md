@@ -1,4 +1,4 @@
-# Project name: Backend for [Mesto](https://github.com/MashaRakitskaya/react-mesto-auth)
+# Backend for [Mesto](https://github.com/MashaRakitskaya/react-mesto-auth)
 
 ### Technologies:
 * Express.js
