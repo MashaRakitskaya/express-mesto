@@ -1,6 +1,6 @@
 # Project name: Backend for "Place" project 
 
-### Project technologies:
+### Technologies:
 * Express.js
 * MongoDB
 
