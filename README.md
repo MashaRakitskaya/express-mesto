@@ -1,4 +1,4 @@
-# Project name: Backend for "Place on React" project 
+# Project name: Backend for "Place" project 
 
 ### Project technologies:
 * Express.js
