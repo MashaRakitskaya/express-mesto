@@ -1,14 +1,19 @@
-# Проект Mesto фронтенд + бэкенд
+# Project name: Backend for "Place on React" project 
 
-## Директории
+### Project technologies:
+* Express.js
+* MongoDB
 
-`/routes` — папка с файлами роутера  
-`/controllers` — папка с файлами контроллеров пользователя и карточки   
-`/models` — папка с файлами описания схем пользователя и карточки  
-  
-Остальные директории вспомогательные, создаются при необходимости разработчиком
+### Functionality:
+* Requests: get, post, put, delete, patch
+* Data validation
+* Error handling
+* SignUp, SignIn
 
-## Запуск проекта
+## Installation:
+* download the code
 
-`npm run start` — запускает сервер   
-`npm run dev` — запускает сервер с hot-reload
+   in the root of the folder with the code:
+*`npm i` – install project dependencies
+*`npm run start` — starts the server
+*`npm run dev` — starts the server with hot-reload
